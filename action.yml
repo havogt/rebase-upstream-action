@@ -30,7 +30,7 @@ runs:
 
         UPSTREAM=${{ inputs.upstream }};
         if [ -z $UPSTREAM ]; then
-            echo ${{ github.token }} | gh auth login --with-token;
+            echo ${{ secrets.ACCESS_TOKEN }} | gh auth login --with-token;
             UPSTREAM=$(gh api repos/:owner/:repo --jq .parent.full_name);
             if [ -z $UPSTREAM ]; then echo "Can't find upstream" >&2 && exit 1; fi;
         fi;
